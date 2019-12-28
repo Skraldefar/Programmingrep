@@ -4,29 +4,46 @@
 
 int interface()
 {
-int direction;
-std::cout << "Welcome to the turtlesim mover\n" << 
-            "Here is your options: \n";
+    int direction;
+    std::cout << "Welcome to the turtlesim mover\n"
+              << "Here is your options: \n";
 
-        std::cout << "1 - Move turtle left\n2 - Move turtle right\n3 - Move turtle straight\n";
+    std::cout << "1 - Move turtle left\n2 - Move turtle right\n3 - Move turtle straight\n";
+    std::cout << "Type your answer: ";
+    std::cin >> direction;
+    while (std::cin.fail() || direction < 1 || direction > 3)
+    {
+        std::cout << "That was not a character of the correct type or not within the number range, please try again\n";
+        std::cin.clear();
+        std::cin.ignore(256, '\n');
         std::cout << "Type your answer: ";
         std::cin >> direction;
-        while(std::cin.fail() || direction < 1 || direction > 3)
-        {
-            std::cout << "That was not a character of the correct type or not within the number range, please try again\n";
-            std::cin.clear();
-            std::cin.ignore(256, '\n');
-            std::cout << "Type your answer: ";
-            std::cin >> direction;
+    }
+    std::cout << "\nYou chose " << direction << std::endl;
 
-        }
-        std::cout << "\nYou chose " << direction << std::endl;
-
-        return direction;
-
+    return direction;
 }
 
+int interface2()
+{
+    int direction;
+    std::cout << "Here is your options again: \n";
 
+    std::cout << "1 - Move turtle left\n2 - Move turtle right\n3 - Move turtle straight\n";
+    std::cout << "Type your answer: ";
+    std::cin >> direction;
+    while (std::cin.fail() || direction < 1 || direction > 3)
+    {
+        std::cout << "That was not a character of the correct type or not within the number range, please try again\n";
+        std::cin.clear();
+        std::cin.ignore(256, '\n');
+        std::cout << "Type your answer: ";
+        std::cin >> direction;
+    }
+    std::cout << "\nYou chose " << direction << std::endl;
+
+    return direction;
+}
 
 int main(int argc, char *argv[])
 {
@@ -34,17 +51,20 @@ int main(int argc, char *argv[])
     ros::NodeHandle n;
     ros::Publisher dir_pub = n.advertise<programprojekt::direction>("Turtledir", 1);
     programprojekt::direction msg;
-    int dir {};
-    while(ros::ok())
+    int dir{};
+    for (size_t i = 0; i < 1; i++)
     {
         dir = interface();
         msg.dir = dir;
         dir_pub.publish(msg);
-
     }
 
+    while (ros::ok())
+    {
+        dir = interface2();
+        msg.dir = dir;
+        dir_pub.publish(msg);
+    }
 
     return 0;
 }
-
-
