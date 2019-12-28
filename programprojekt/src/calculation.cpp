@@ -1,7 +1,13 @@
+// *** Author:  Group B2245
+// *** Project: Miniproject
+// *** Node:    calculation
+// *** Created: 31-12-2019
+
 #include <ros/ros.h>
 #include <iostream>
 #include <programprojekt/direction.h>
 #include <geometry_msgs/Twist.h>
+
 int dir{};
 
 void callback(const programprojekt::direction &submsg)
