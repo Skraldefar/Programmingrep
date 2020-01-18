@@ -1,4 +1,4 @@
-// *** Author:  Group B2245
+// *** Author:  Group B225
 // *** Project: Miniproject
 // *** Node:    calculation
 // *** Created: 31-12-2019
